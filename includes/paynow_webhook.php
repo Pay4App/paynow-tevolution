@@ -55,12 +55,11 @@ $isPaidOnPaynow = in_array( $paynowTransactionStatus, array( 'Paid', 'Awaiting D
 // mark transaction as cancelled to not lock up the customer from another purchase
 // (Tevolution will lock future payments if there is a transaction with status 'Pending')
 if ( $isCancelledOnPaynow ) {
+  // todo: 'cancel' the transaction
+  $wpdb->query( $wpdb->prepare( "UPDATE {$transaction_db_table_name} set status=2, payment_date = %s where trans_id = %d", date( 'Y-m-d H:i:s' ), $transaction->trans_id ) );
 
   // delete the transaction
-  $wpdb->query( $wpdb->prepare( "delete from {$transaction_db_table_name} where trans_id = %d", $transaction->trans_id ) );
-
-  // todo: 'cancel' the transaction
-  // $wpdb->query( $wpdb->prepare( "UPDATE {$transaction_db_table_name} set status=2, payment_date = %s where trans_id = %d", date( 'Y-m-d H:i:s' ), $transaction->trans_id ) );
+  // $wpdb->query( $wpdb->prepare( "delete from {$transaction_db_table_name} where trans_id = %d", $transaction->trans_id ) );
   return;
 }
 
