@@ -2,8 +2,6 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-error_reporting(E_ALL); ini_set("display_errors", 1); 
-
 require 'paynow/vendor/autoload.php';
 
 global $General, $Cart, $payable_amount, $post_title, $last_postid, $trans_id, $wpdb;
@@ -60,7 +58,9 @@ if ( $post_title == 'Username' || $last_postid == 0 ) {
 /* get success page with permalink */
 $post_id = tmpl_get_post_id_by_meta_key_and_value( 'is_tevolution_success_page', '1' );
 $success_page_url = get_permalink( $post_id );
-$returnUrl = apply_filters( 'tmpl_returnUrl', $success_page_url . '?ptype=return&pmethod=paynow&trans_id=' . $trans_id . $suburl );
+
+// $returnUrl = apply_filters( 'tmpl_returnUrl', $success_page_url . '?ptype=return&pmethod=paynow&trans_id=' . $trans_id . $suburl );
+$returnUrl = apply_filters( 'tmpl_returnUrl',site_url() . '/?page=paynow_success&paydeltype=paynow&pid=' . $last_postid . '&trans_id=' . $trans_id );
 $cancel_return = apply_filters( 'tmpl_cancel_return', $success_page_url . '?ptype=cancel&pmethod=paynow&trans_id=' . $trans_id . $suburl );
 $notify_url = apply_filters( 'tmpl_notify_url', $success_page_url . '?ptype=notifyurl&pmethod=paynow&trans_id=' . $trans_id . $suburl );
 
