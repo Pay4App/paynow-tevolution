@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(E_ALL); ini_set("display_errors", 1);
+
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Tevolution configuration options for paynow
@@ -53,8 +55,10 @@ function tevolution_paynow_plugin_deactivation() {
   delete_option('payment_method_paynow');
 }
 
+/* WordPress plugin hooks suffice for this
 if(strtolower($_REQUEST['install']) == 'paynow'){
   tevolution_paynow_plugin_activation();
 } elseif($_REQUEST['uninstall'] == 'paynow') {
   tevolution_paynow_plugin_deactivation();
 }
+*/

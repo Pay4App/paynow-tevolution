@@ -5,9 +5,9 @@
  * Description: Paynow integration for Tevolution.
  * Author: Sam Takunda <sam.takunda@gmail.com>, for Angel & Walt
  * Author URI: http://sam.co.zw
- * Version: 1.0.0
+ * Version: 1.1.6
  *
- * @version 1.0.0
+ * @version 1.1.6
  */
 
 // Exit if accessed directly.
@@ -42,7 +42,9 @@ $paynow_method_info = array(
 );
 
 register_activation_hook(__FILE__, 'tevolution_paynow_plugin_activation');
-register_deactivation_hook(__FILE__, 'tevolution_paynow_plugin_deactivation');
+
+// there's no need to remove configs just because a plugin has been deactivated
+// register_deactivation_hook(__FILE__, 'tevolution_paynow_plugin_deactivation');
 
 function tevolution_paynow_plugin_activation() {
   global $paynow_method_info;
@@ -64,6 +66,5 @@ function tevolution_paynow_plugin_activation() {
 }
 
 function tevolution_paynow_plugin_deactivation() {
-  delete_option('payment_method_paynow');
   delete_option('payment_method_paynow');
 }
