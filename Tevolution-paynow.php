@@ -5,9 +5,9 @@
  * Description: Paynow integration for Tevolution.
  * Author: Sam Takunda <sam.takunda@gmail.com>, for Angel & Walt
  * Author URI: http://sam.co.zw
- * Version: 1.1.6
+ * Version: 1.1.9
  *
- * @version 1.1.6
+ * @version 1.1.9
  */
 
 // Exit if accessed directly.
