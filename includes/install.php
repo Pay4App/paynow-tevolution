@@ -4,7 +4,7 @@ error_reporting(E_ALL); ini_set("display_errors", 1);
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-function tevolution_paynow_plugin_install() {
+function tevolution_paynow_gateway_on() {
   // Tevolution configuration options for paynow
   $paynow_opts = array();
   $paynow_opts [] = array(
@@ -48,14 +48,14 @@ function tevolution_paynow_plugin_install() {
   }
 }
 
-function tevolution_paynow_plugin_uninstall() {
+function tevolution_paynow_gateway_off() {
   delete_option('payment_method_paynow');
 }
 
 /* WordPress plugin hooks suffice for this
 if(strtolower($_REQUEST['install']) == 'paynow'){
-  tevolution_paynow_plugin_install();
+  // call activation
 } elseif($_REQUEST['uninstall'] == 'paynow') {
-  tevolution_paynow_plugin_uninstall();
+  // call deactivation
 }
 */
