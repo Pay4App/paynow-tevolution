@@ -4,36 +4,33 @@ error_reporting(E_ALL); ini_set("display_errors", 1);
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-// Tevolution configuration options for paynow
-global $paynow_method_info;
-
-$paynow_opts = array();
-$paynow_opts [] = array(
-  'title' => 'Integration ID',
-  'fieldname' => 'integration_id',
-  'type' => 'text',
-  'value' => '',
-  'description' => __('Your Paynow integration ID')
-);
-
-$paynow_opts [] = array(
-  'title' => 'Integration Secret',
-  'fieldname' => 'integration_secret',
-  'type' => 'text',
-  'value' => '',
-  'description' => __('Your Paynow integration secret')
-);
-
-$paynow_method_info = array(
-  'name' => 'paynow',
-  'key' => 'paynow',
-  'isactive' => 1,
-  'display_order' => 4,
-  'payOpts' => $paynow_opts,
-);
-
 function tevolution_paynow_plugin_activation() {
-  global $paynow_method_info;
+  // Tevolution configuration options for paynow
+  $paynow_opts = array();
+  $paynow_opts [] = array(
+    'title' => 'Integration ID',
+    'fieldname' => 'integration_id',
+    'type' => 'text',
+    'value' => '',
+    'description' => __('Your Paynow integration ID')
+  );
+  
+  $paynow_opts [] = array(
+    'title' => 'Integration Secret',
+    'fieldname' => 'integration_secret',
+    'type' => 'text',
+    'value' => '',
+    'description' => __('Your Paynow integration secret')
+  );
+  
+  $paynow_method_info = array(
+    'name' => 'paynow',
+    'key' => 'paynow',
+    'isactive' => 1,
+    'display_order' => 4,
+    'payOpts' => $paynow_opts,
+  );
+
   update_option('payment_method_paynow', $paynow_method_info);
 
   // check if Paynow webhooks entry point exists 
